@@ -24,4 +24,4 @@ test_script:
   - lua run.lua tests --luacov
 
 on_success:
-  #- luacov-coveralls
+  - luacov-coveralls
