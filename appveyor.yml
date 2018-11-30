@@ -15,7 +15,7 @@ before_build:
   - pip install hererocks
   - hererocks here --%LUA% -rlatest
   - call here\bin\activate
-  - luarocks install luacov-coveralls
+  - luarocks install https://raw.githubusercontent.com/Tieske/luacov-coveralls/master/rockspecs/luacov-coveralls-scm-0.rockspec
   - luarocks install bit32
 
 build_script:
@@ -25,4 +25,4 @@ test_script:
   - lua run.lua tests --luacov
 
 on_success:
-  - luacov-coveralls
+  - luacov-coveralls -v
