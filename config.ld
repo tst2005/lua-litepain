@@ -1,16 +1,16 @@
-project = 'Penlight'
-description = 'Penlight Lua Libraries 1.6.0'
+project = 'litepain'
+description = 'litepain Lua Libraries 1.6.0'
 full_description = 'The documentation is available @{01-introduction.md|here}.'
-title = 'Penlight Documentation'
-dir = 'docs'
+title = 'litepain Documentation'
+dir = 'lp-docs'
 style = '!fixed'
 use_markdown_titles = true
-topics = 'docs_topics'
+topics = 'lp-docs_topics'
 examples = {'./examples','./tests/test-data.lua'}
-package = 'pl'
+package = 'lp'
 format = 'discount'
 sort_modules=true
-file = './lua/pl'
+file = './lua/lp'
 kind_names={topic='Manual',module='Libraries'}
 tparam_alias('array','array')
 tparam_alias('array2d','array')

@@ -4,8 +4,9 @@
 
 # Differences
 
-* Major code refactoring to gave micro-modules
+* Major code refactoring to have micro-modules
 * Avoid as possible to change the global environment
+* Fine-grained (micro)modules dependencies
 
 ## First goal
 
