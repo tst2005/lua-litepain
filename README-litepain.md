@@ -13,3 +13,6 @@
 * the first target is `pl.path`
 * It need to refactor the most used modules (`pl.compat`, `pl.utils`, etc)
 
+## Deep `pl.*` dependencies Analysis
+
+* See [DEPS.md](DEPS.md)
