@@ -2,27 +2,32 @@
 --
 -- @module lp.micromodule
 
-local micromodules = {}
+
+-- setup the content of this module
+local content = {}
 
 --- The On-demand wrapper
 -- @field ondemand
 -- @see lp.micromodule.ondemand
 -- @class function
 -- @name ondemand
-micromodules.ondemand = true
+content.ondemand = function() return require("lp.micromodule.ondemand") end
 
 --- The Require-All wrapper
 -- @field requireall
 -- @see lp.micromodule.requireall
 -- @class function
 -- @name requireall
-micromodules.requireall = true
+content.requireall = function() return require("lp.micromodule.requireall") end
 
--- the wrapper to use
+-- The wrapper to use (that is also it-self a component of this module)
+--
+-- On demand
 local wrapper = require "lp.micromodule.ondemand"
--- we can also use lp.micromodule.requireall
+--
+-- Staticly with `lp.micromodule.requireall`
 --local wrapper = require "lp.micromodule.requireall"
 
--- the `lp.micromodule` module
-local M = wrapper("lp.micromodule.", micromodules, nil)
+local M = wrapper(content)
+assert(M.ondemand == require "lp.micromodule.ondemand")
 return M

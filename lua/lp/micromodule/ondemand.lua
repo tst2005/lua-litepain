@@ -9,11 +9,10 @@
 -- @class function
 -- @name ondemand
 local function ondemand(getfuncs)
-	local __index
-	function __index(p,k)
+	local function __index(p,k)
 		local getfunc = getfuncs[k]
-		assert(type(getfunc)=="function", "Internal error: unable to get content, got "..type(getfunc)..", function expected")
-		if type(getfunc)=="function" then
+		if getfunc then
+			assert(type(getfunc)=="function", "Internal error: unable to get content, got "..type(getfunc)..", function expected")
 			local v = getfunc(k)
 			p[k] = v -- put in the table for a direct access (will be call again only if v==nil)
 			return v
