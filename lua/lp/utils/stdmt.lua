@@ -12,7 +12,6 @@
 -- @field Map the Map metatable
 -- @field Set the Set metatable
 -- @field MultiMap the MultiMap metatable
--- @table stdmt
 local stdmt = {
     List = {_name='List'},
     Map = {_name='Map'},
