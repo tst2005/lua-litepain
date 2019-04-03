@@ -1,10 +1,10 @@
 --- Generally useful routines.
 -- See  @{01-introduction.md.Generally_useful_functions|the Guide}.
 --
--- Dependencies: `pl.compat`, all exported fields and functions from
--- `pl.compat` are also available in this module.
+-- Dependencies: `lp.compat`, all exported fields and functions from
+-- `lp.compat` are also available in this module.
 --
--- @module pl.utils
+-- @module lp.utils.readfile
 local io = io -- for io.open
 local raise = "lp.utils.raise"
 local assert_string = require "lp.utils.assert_string"
@@ -16,8 +16,7 @@ local assert_string = require "lp.utils.assert_string"
 -- @param filename The file path
 -- @param is_bin open in binary mode
 -- @return file contents
--- @class function
--- @name readfile
+-- @function readfile
 local function readfile(filename,is_bin)
     local mode = is_bin and 'b' or ''
     assert_string(1,filename)

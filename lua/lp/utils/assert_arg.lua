@@ -1,5 +1,5 @@
 --- lp.utils.assert_arg
--- @module lp.utils.assert_arg
+-- @Xmodule lp.utils.assert_arg
 
 --local format = string.format
 
@@ -19,8 +19,7 @@
 -- local param1 = assert_arg(1,"hello",'table')  --> error: argument 1 expected a 'table', got a 'string'
 -- local param4 = assert_arg(4,'!@#$%^&*','string',path.isdir,'not a directory')
 --      --> error: argument 4: '!@#$%^&*' not a directory
--- @class function
--- @name assert_arg
+-- @function assert_arg
 local function assert_arg (n,val,tp,verify,msg,lev)
     if type(val) ~= tp then
         error(("argument %d expected a '%s', got a '%s'"):format(n,tp,type(val)),lev or 2)
