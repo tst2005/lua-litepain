@@ -42,7 +42,7 @@ do end
 local wrapper = assert(require "lp.micromodule".ondemand)
 --local wrapper = assert(require "lp.micromodule".requireall) -- cross require content
 
-local mkloader = require "lp.micromodule.ondemand.mkloader"
+local prefixrequire = require "lp.micromodule.prefixrequire"
 
 --- Lua module does not support to remember nil or boolean value without side-effect.
 -- The wanted value is encapsulated into a function.
@@ -52,8 +52,8 @@ local function require_and_call(name)
 end
 
 -- create the both handlers
-local v = mkloader("lp.detect.", require) -- the usual way
-local fv = mkloader("lp.detect.", require_and_call) -- the special way, require then call the returned function
+local v = prefixrequire("lp.detect.", require) -- the usual way
+local fv = prefixrequire("lp.detect.", require_and_call) -- the special way, require then call the returned function
 
 local getfuncs = { lua51=fv, jit=fv, jit52=fv, dir_separator=v, is_windows=fv}
 local detect = wrapper(getfuncs)
