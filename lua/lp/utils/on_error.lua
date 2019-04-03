@@ -1,1 +1,1 @@
-return require "pl.utils.t.error_managment".on_error
+return assert(require "lp.utils.t.error_managment".on_error)
