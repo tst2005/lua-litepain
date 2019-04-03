@@ -24,7 +24,7 @@ content.ondemand = subrequire
 content.requireall = subrequire
 --content.requireall = function() return require("lp.micromodule.requireall") end
 
--- The helper to make sub-require generic functions
+--- The helper to make sub-require generic functions
 -- @field prefixrequire
 -- @see lp.micromodule.prefixrequire
 -- @class function

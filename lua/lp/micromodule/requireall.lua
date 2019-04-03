@@ -6,6 +6,7 @@
 
 --- The require-all wrapper
 -- ...
+-- @param getfuncs a hashmap table, each field contains the function to get the appropriate entry
 -- @class function
 -- @name requireall
 local function requireall(getfuncs)

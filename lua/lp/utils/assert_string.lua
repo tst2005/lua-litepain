@@ -10,8 +10,9 @@ local assert_arg = require "lp.utils.assert_arg"
 -- @return the validated value
 -- @raise val must be a string
 -- @usage
+-- local assert_string = require "lp.utils.assert_string"
 -- local val = 42
--- local param2 = lp.utils.assert_string(2, val) --> error: argument 2 expected a 'string', got a 'number'
+-- local param2 = assert_string(2, val) --> error: argument 2 expected a 'string', got a 'number'
 -- @class function
 -- @name assert_string
 local function assert_string (n, val)

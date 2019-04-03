@@ -2,6 +2,7 @@
 --- On demand: 
 -- This module is use to setup a module that will only require his content when it used
 --
+
 -- @module lp.micromodule.ondemand
 
 --- create an on-demande module
