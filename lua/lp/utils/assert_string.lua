@@ -1,8 +1,6 @@
 --- Generally useful routines.
 --
--- @module lp.utils.assert_string
-
-local assert_arg = require "lp.utils.assert_arg"
+-- @Xmodule lp.utils.assert_string
 
 --- assert the common case that the argument is a string.
 -- @param n argument index
@@ -15,7 +13,11 @@ local assert_arg = require "lp.utils.assert_arg"
 -- local param2 = assert_string(2, val) --> error: argument 2 expected a 'string', got a 'number'
 -- @class function
 -- @name assert_string
-local function assert_string (n, val)
-    return assert_arg(n,val,'string',nil,nil,3)
+local function assert_string (n,val)
+	if type(val) ~= "string" then
+		error(("argument %d expected a 'string', got a '%s'"):format(n,type(val)),3)
+	else
+		return val
+	end
 end
 return assert_string
