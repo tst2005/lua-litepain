@@ -2,7 +2,6 @@
 --
 -- @module lp.micromodule
 
-
 -- setup the content of this module
 local content = {}
 
@@ -25,13 +24,19 @@ content.ondemand = subrequire
 content.requireall = subrequire
 --content.requireall = function() return require("lp.micromodule.requireall") end
 
+-- The helper to make sub-require generic functions
+-- @field prefixrequire
+-- @see lp.micromodule.prefixrequire
+-- @class function
+-- @name prefixrequire
+content.prefixrequire = subrequire
 
 -- The wrapper to use (that is also it-self a component of this module)
---
--- On demand
+
+-- 1) On demand
 local wrapper = require "lp.micromodule.ondemand"
---
--- Staticly with `lp.micromodule.requireall`
+
+-- 2) Staticly
 --local wrapper = require "lp.micromodule.requireall"
 
 local M = wrapper(content)

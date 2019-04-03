@@ -1,12 +1,12 @@
---- Low level function used by `lp.micromodule.ondemand`
--- @module lp.micromodule.ondemand.mkloader
+--- Low level function that can be used for `lp.micromodule.ondemand` or `lp.micromodule.requireall`
+-- @module lp.micromodule.prefixrequire
 
---- xx
+--- A helper to create a require function that will add a prefix to the module name
 -- @class function
--- @name mkloader
-local function mkloader(prefix, require)
+-- @name prefixrequire
+local function prefixrequire(prefix, require)
         return function(k)
 		return require(prefix..k)
 	end
 end               
-return mkloader
+return prefixrequire
