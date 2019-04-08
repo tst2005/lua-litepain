@@ -51,31 +51,15 @@ path.chdir = lfs.chdir
 
 
 
---- is this a directory?
--- @string P A file path
 path.isdir = require "pl.path.isdir"
 
---- is this a file?.
--- @string P A file path
 path.isfile = require "pl.path.isfile"
 
--- is this a symbolic link?
--- @string P A file path
 path.islink = require "pl.path.islink"
 
---- return size of a file.
--- @string P A file path
 path.getsize = require "pl.path.getsize"
 
-
-
---- does a path exist?.
--- @string P A file path
--- @return the file path if it exists, nil otherwise
-function path.exists(P)
-    assert_string(1,P)
-    return attrib(P,'mode') ~= nil and P
-end
+path.exists = require "pl.path.exists"
 
 --- Return the time of last access as the number of seconds since the epoch.
 -- @string P A file path
@@ -311,109 +295,10 @@ function path.normpath(P)
     return P
 end
 
---- relative path from current directory or optional start point
--- @string P a path
--- @string[opt] start optional start point (default current directory)
-function path.relpath (P,start)
-    assert_string(1,P)
-    if start then assert_string(2,start) end
-    local split,normcase,min,append = utils.split, path.normcase, math.min, table.insert
-    P = normcase(path.abspath(P,start))
-    start = start or currentdir()
-    start = normcase(start)
-    local startl, Pl = split(start,sep), split(P,sep)
-    local n = min(#startl,#Pl)
-    if path.is_windows and n > 0 and at(Pl[1],2) == ':' and Pl[1] ~= startl[1] then
-        return P
-    end
-    local k = n+1 -- default value if this loop doesn't bail out!
-    for i = 1,n do
-        if startl[i] ~= Pl[i] then
-            k = i
-            break
-        end
-    end
-    local rell = {}
-    for i = 1, #startl-k+1 do rell[i] = '..' end
-    if k <= #Pl then
-        for i = k,#Pl do append(rell,Pl[i]) end
-    end
-    return table.concat(rell,sep)
-end
+path.relpath = require "lp.path.relpath"
+path.expanduser = require "lp.path.expanduser"
+path.tmpname = require "lp.path.tmpname"
+path.common_prefix = require "lp.path.common_prefix"
+path.package_path = require "lp.path.package_path"
 
-
---- Replace a starting '~' with the user's home directory.
--- In windows, if HOME isn't set, then USERPROFILE is used in preference to
--- HOMEDRIVE HOMEPATH. This is guaranteed to be writeable on all versions of Windows.
--- @string P A file path
-function path.expanduser(P)
-    assert_string(1,P)
-    if at(P,1) == '~' then
-        local home = getenv('HOME')
-        if not home then -- has to be Windows
-            home = getenv 'USERPROFILE' or (getenv 'HOMEDRIVE' .. getenv 'HOMEPATH')
-        end
-        return home..sub(P,2)
-    else
-        return P
-    end
-end
-
-
----Return a suitable full path to a new temporary file name.
--- unlike os.tmpnam(), it always gives you a writeable path (uses TEMP environment variable on Windows)
-function path.tmpname ()
-    local res = tmpnam()
-    -- On Windows if Lua is compiled using MSVC14 os.tmpname
-    -- already returns an absolute path within TEMP env variable directory,
-    -- no need to prepend it.
-    if path.is_windows and not res:find(':') then
-        res = getenv('TEMP')..res
-    end
-    return res
-end
-
---- return the largest common prefix path of two paths.
--- @string path1 a file path
--- @string path2 a file path
-function path.common_prefix (path1,path2)
-    assert_string(1,path1)
-    assert_string(2,path2)
-    path1, path2 = path.normcase(path1), path.normcase(path2)
-    -- get them in order!
-    if #path1 > #path2 then path2,path1 = path1,path2 end
-    for i = 1,#path1 do
-        local c1 = at(path1,i)
-        if c1 ~= at(path2,i) then
-            local cp = path1:sub(1,i-1)
-            if at(path1,i-1) ~= sep then
-                cp = path.dirname(cp)
-            end
-            return cp
-        end
-    end
-    if at(path2,#path1+1) ~= sep then path1 = path.dirname(path1) end
-    return path1
-    --return ''
-end
-
---- return the full path where a particular Lua module would be found.
--- Both package.path and package.cpath is searched, so the result may
--- either be a Lua file or a shared library.
--- @string mod name of the module
--- @return on success: path of module, lua or binary
--- @return on error: nil,error string
-function path.package_path(mod)
-    assert_string(1,mod)
-    local res
-    mod = mod:gsub('%.',sep)
-    res = package.searchpath(mod,package.path)
-    if res then return res,true end
-    res = package.searchpath(mod,package.cpath)
-    if res then return res,false end
-    return raise 'cannot find module on path'
-end
-
-
----- finis -----
 return path

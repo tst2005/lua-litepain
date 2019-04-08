@@ -1,11 +1,11 @@
---- Generally useful routines.
--- See  @{01-introduction.md.Generally_useful_functions|the Guide}.
+---
 --
 -- Dependencies: `lp.compat.load`, `lp.utils.raise`, `lp.utils.memoize`
 --
--- @module lp.utils.string_lambda
+-- @submodule lp.utils
 local load = require "lp.compat.load"
 local raise = require "lp.utils.raise"
+local memoize = require "lp.utils.memoize"
 
 local function _string_lambda(f)
     if f:find '^|' or f:find '_' then
@@ -25,8 +25,6 @@ local function _string_lambda(f)
         return raise 'not a string lambda'
     end
 end
-
-local memoize = require "lp.utils.memoize"
 
 --- an anonymous function as a string. This string is either of the form
 -- '|args| expression' or is a function of one argument, '_'

@@ -1,11 +1,10 @@
---- Generally useful routines.
--- See  @{01-introduction.md.Generally_useful_functions|the Guide}.
+---
+-- Dependencies: `lp.compat.unpack`
 --
--- Dependencies: `lp.compat`, all exported fields and functions from
--- `lp.compat` are also available in this module.
---
--- @module lp.utils.unpack
-local _unpack = table.unpack  -- always injected by 'compat'
+-- @submodule lp.utils
+
+--local _unpack = table.unpack  -- always injected by 'compat'
+local _unpack = require "lp.compat.unpack"
 
 --- unpack a table and return its contents.
 --

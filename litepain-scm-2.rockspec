@@ -24,7 +24,7 @@ dependencies = {
 build = {
   type = "builtin",
   modules = {
-    ["lp"] = "lua/lp/init.lua",
+--    ["lp"] = "lua/lp/init.lua",
     ["lp.compat"] = "lua/lp/compat.lua",
     ["lp.utils"] = "lua/lp/utils.lua",
 

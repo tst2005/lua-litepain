@@ -1,10 +1,7 @@
---- Generally useful routines.
--- See  @{01-introduction.md.Generally_useful_functions|the Guide}.
+---
+-- Dependencies: none
 --
--- Dependencies: `lp.compat`, all exported fields and functions from
--- `lp.compat` are also available in this module.
---
--- @module lp.utils.pack
+-- @submodule lp.utils
 
 --- pack an argument list into a table.
 -- @param ... any arguments

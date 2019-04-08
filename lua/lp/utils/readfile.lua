@@ -1,10 +1,7 @@
---- Generally useful routines.
--- See  @{01-introduction.md.Generally_useful_functions|the Guide}.
+---
+-- Dependencies: `lp.utils.raise`, `lp.utils.assert_string`
 --
--- Dependencies: `lp.compat`, all exported fields and functions from
--- `lp.compat` are also available in this module.
---
--- @module lp.utils.readfile
+-- @submodule lp.utils
 local io = io -- for io.open
 local raise = "lp.utils.raise"
 local assert_string = require "lp.utils.assert_string"
@@ -31,6 +28,4 @@ local function readfile(filename,is_bin)
     end
     return res
 end
-
 return readfile
-

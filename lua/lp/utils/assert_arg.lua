@@ -1,5 +1,5 @@
 --- lp.utils.assert_arg
--- @Xmodule lp.utils.assert_arg
+-- @submodule lp.utils
 
 --local format = string.format
 

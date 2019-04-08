@@ -1,9 +1,7 @@
---- Generally useful routines.
--- See  @{01-introduction.md.Generally_useful_functions|the Guide}.
---
+---
 -- Dependencies: none
 --
--- @Xmodule lp.utils.choose
+-- @submodule lp.utils
 
 --- return either of two values, depending on a condition.
 -- @param cond A condition

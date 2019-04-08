@@ -1,9 +1,7 @@
---- Generally useful routines.
--- See  @{01-introduction.md.Generally_useful_functions|the Guide}.
---
+--- 
 -- Dependencies: `lp.utils.function_arg`
 --
--- @Xmodule lp.utils.bind1
+-- @submodule lp.utils
 
 local function_arg = require "lp.utils.function_arg"
 
@@ -22,6 +20,7 @@ local function_arg = require "lp.utils.function_arg"
 --
 -- print(hello("world"))     --> "Hello world"
 -- print(hello("sunshine"))  --> "Hello sunshine"
+-- @function bind1
 local function bind1 (fn,p)
     fn = function_arg(1,fn)
     return function(...) return fn(p,...) end

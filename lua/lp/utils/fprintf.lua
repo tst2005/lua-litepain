@@ -1,7 +1,6 @@
---- Generally useful routines.
--- See  @{01-introduction.md.Generally_useful_functions|the Guide}.
---
--- @module lp.utils.fprintf
+---
+-- Dependencies: `lp.utils.assert_string`
+-- @submodule lp.utils
 local format = string.format
 local assert_string = require "lp.utils.assert_string"
 

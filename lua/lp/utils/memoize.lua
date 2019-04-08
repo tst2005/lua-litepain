@@ -1,8 +1,6 @@
---- Generally useful routines.
--- See  @{01-introduction.md.Generally_useful_functions|the Guide}.
+---
 --
--- @module lp.utils.memoize
-
+-- @submodule lp.utils
 
 --- Functional
 -- @section functional
@@ -13,8 +11,7 @@
 -- building a table upfront is wasteful/impossible.
 -- @param func a function of at least one argument
 -- @return a function with at least one argument, which is used as the key.
--- @class function
--- @name memoize
+-- @function memoize
 local function memoize(func)
     local cache = {}
     return function(k)

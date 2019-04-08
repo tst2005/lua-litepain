@@ -4,7 +4,10 @@
 -- Dependencies: `lp.compat`, all exported fields and functions from
 -- `lp.compat` are also available in this module.
 --
--- @Xmodule lp.utils.array_tostring
+-- @submodule lp.utils
+
+--- File handling
+-- @section files
 
 --- convert an array of values to strings.
 -- @param t a list-like table

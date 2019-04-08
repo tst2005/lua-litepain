@@ -1,14 +1,11 @@
---- Generally useful routines.
--- See  @{01-introduction.md.Generally_useful_functions|the Guide}.
---
--- Dependencies: `lp.compat`, all exported fields and functions from
--- `lp.compat` are also available in this module.
+---
+-- Dependencies: `lp.utils.assert_string`, `lp.utils.raise`
 --
 -- @module lp.utils.readlines
 
 local assert_string = require "lp.utils.assert_string"
+local raise = require "lp.utils.raise"
 local io = io -- io.open
-local raise = "lp.utils.raise"
 local append = table.insert
 
 --- return the contents of a file as a list of lines

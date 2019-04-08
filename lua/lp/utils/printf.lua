@@ -1,10 +1,7 @@
---- Generally useful routines.
--- See  @{01-introduction.md.Generally_useful_functions|the Guide}.
+---
+-- Dependencies: `lp.utils.assert_string`, `lp.utils.fprintf`
 --
--- Dependencies: `lp.compat`, all exported fields and functions from
--- `lp.compat` are also available in this module.
---
--- @module lp.utils.printf
+-- @submodule lp.utils
 local assert_string = require "lp.utils.assert_string"
 local fprintf = require "lp.utils.fprintf"
 

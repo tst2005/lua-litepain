@@ -1,9 +1,5 @@
---- Generally useful routines.
--- See  @{01-introduction.md.Generally_useful_functions|the Guide}.
---
--- Dependencies: `lp.compat` ?
---
--- @module lp.utils.t.error_managment
+---
+-- @submodule lp.utils
 
 local error = error
 local tostring = tostring
@@ -22,8 +18,7 @@ local err_mode = 'default'
 -- @usage utils.quit(-1, "Error '%s' happened", "42")
 -- -- is equivalent to
 -- utils.quit("Error '%s' happened", "42")  --> Error '42' happened
--- @class function
--- @name quit
+-- @function quit
 local function quit(code, msg, ...)
     if type(code) == 'string' then
         fprintf(io.stderr, code, msg, ...)
@@ -47,8 +42,7 @@ utils.quit = quit
 -- if some_condition then
 --   return utils.raise("some condition was not met")  -- MUST use 'return'!
 -- end
--- @call function
--- @name raise
+-- @function raise
 local function raise (err)
     if err_mode == 'default' then
         return nil, err
@@ -81,8 +75,7 @@ end
 --
 -- @param mode either 'default', 'quit'  or 'error'
 -- @see utils.raise
--- @class function
--- @name on_error
+-- @function on_error
 function utils.on_error (mode)
     mode = tostring(mode)
     if ({['default'] = 1, ['quit'] = 2, ['error'] = 3})[mode] then

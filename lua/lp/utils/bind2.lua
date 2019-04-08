@@ -1,10 +1,9 @@
---- Generally useful routines.
--- See  @{01-introduction.md.Generally_useful_functions|the Guide}.
+---
 --
--- Dependencies: `lp.compat`, all exported fields and functions from
--- `lp.compat` are also available in this module.
+-- Dependencies: `lp.utils.function_arg`
 --
--- @Xmodule lp.utils.bind2
+-- @submodule lp.utils
+
 local function_arg = require "lp.utils.function_arg"
 
 --- bind the second argument of the function to a value.
@@ -21,6 +20,7 @@ local function_arg = require "lp.utils.function_arg"
 --
 -- print(hello("Hello", "!"))  --> "Hello world !"
 -- print(hello("Bye", "?"))    --> "Bye world ?"
+-- @function bind2
 local function bind2 (fn,p)
     fn = utils.function_arg(1,fn)
     return function(x,...) return fn(x,p,...) end

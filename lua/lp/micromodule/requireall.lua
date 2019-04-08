@@ -2,7 +2,7 @@
 -- This module is use to setup a module that will basically require all his content.
 -- It is the exact opposit approach of `lp.micromodule.ondemand`.
 --
--- @module lp.micromodule.requireall
+-- @submodule lp.micromodule
 
 --- The require-all wrapper
 -- ...

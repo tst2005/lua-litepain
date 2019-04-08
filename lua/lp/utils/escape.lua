@@ -1,10 +1,6 @@
---- Generally useful routines.
--- See  @{01-introduction.md.Generally_useful_functions|the Guide}.
---
--- Dependencies: `lp.compat`, all exported fields and functions from
--- `lp.compat` are also available in this module.
---
--- @Xmodule lp.utils.escape
+---
+-- Dependencies: `lp.utils.assert_string`
+-- @submodule lp.utils
 
 --- String functions
 -- @section string-functions

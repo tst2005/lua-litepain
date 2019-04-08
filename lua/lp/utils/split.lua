@@ -1,10 +1,7 @@
---- Generally useful routines.
--- See  @{01-introduction.md.Generally_useful_functions|the Guide}.
+---
+-- Dependencies: `lp.utils.assert_string`
 --
--- Dependencies: `lp.compat`, all exported fields and functions from
--- `lp.compat` are also available in this module.
---
--- @module lp.utils.split
+-- @submodule lp.utils
 local assert_string = require "lp.utils.assert_string"
 
 --- split a string into a list of strings separated by a delimiter.
