@@ -5,6 +5,9 @@
 local assert_string = require "lp.utils.assert_string"
 local fprintf = require "lp.utils.fprintf"
 
+--- Functions
+-- @section functions
+
 --- print an arbitrary number of arguments using a format.
 -- Output will be sent to `stdout`.
 -- @param fmt The format (see `string.format`)

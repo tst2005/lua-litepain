@@ -42,7 +42,6 @@ compat.is_windows = require "lp.detect".is_windows
 
 compat.execute = require "lp.compat.execute"
 
-----------------
 -- Load Lua code as a text or binary chunk (in a Lua 5.2 compatible way).
 -- @param ld code string or loader
 -- @param[opt] source name of chunk for errors
@@ -50,7 +49,6 @@ compat.execute = require "lp.compat.execute"
 -- @param[opt] env environment to load the chunk in
 -- @function compat.load
 
----------------
 -- Get environment of a function (in a Lua 5.1 compatible way).
 -- Not 100% compatible, so with Lua 5.2 it may return nil for a function with no
 -- global references!
@@ -58,7 +56,6 @@ compat.execute = require "lp.compat.execute"
 -- @param f a function or a call stack reference
 -- @function compat.getfenv
 
----------------
 -- Set environment of a function (in a Lua 5.1 compatible way).
 -- @param f a function or a call stack reference
 -- @param env a table that becomes the new environment of `f`
@@ -120,10 +117,10 @@ else
     end
 end
 
---- Global exported functions (for Lua 5.1 & LuaJIT)
+-- Global exported functions (for Lua 5.1 & LuaJIT)
 -- @section lua52
 
---- pack an argument list into a table.
+-- pack an argument list into a table.
 -- @param ... any arguments
 -- @return a table with field n set to the length
 -- @function table.pack
@@ -133,7 +130,7 @@ if not table.pack then
     end
 end
 
---- unpack a table and return the elements.
+-- unpack a table and return the elements.
 --
 -- NOTE: this version does NOT honor the n field, and hence it is not nil-safe.
 -- See `utils.unpack` for a version that is nil-safe.
@@ -147,7 +144,7 @@ if not table.unpack then
     table.unpack = unpack           -- luacheck: ignore
 end
 
---- return the full path where a Lua module name would be matched.
+-- return the full path where a Lua module name would be matched.
 -- @param mod module name, possibly dotted
 -- @param path a path in the same form as package.path or package.cpath
 -- @see path.package_path
@@ -163,5 +160,6 @@ if not package.searchpath then
         end
     end
 end
+
 
 return compat

@@ -10,7 +10,7 @@ local function_arg = require "lp.utils.function_arg"
 -- @param p a value
 -- @return a function such that f(x) is fn(p,x)
 -- @raise same as @{function_arg}
--- @see func.bind1
+-- @function bind1
 -- @usage
 -- local function f(msg, name)
 --   print(msg .. " " .. name)
@@ -20,7 +20,6 @@ local function_arg = require "lp.utils.function_arg"
 --
 -- print(hello("world"))     --> "Hello world"
 -- print(hello("sunshine"))  --> "Hello sunshine"
--- @function bind1
 local function bind1 (fn,p)
     fn = function_arg(1,fn)
     return function(...) return fn(p,...) end
