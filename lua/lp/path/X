@@ -2,90 +2,20 @@
 --
 -- This is modelled after Python's os.path library (10.1); see @{04-paths.md|the Guide}.
 --
--- Dependencies: `lp.utils`, `lfs`
--- @module lp.path
+-- Dependencies: `pl.utils`, `lfs`
+-- @module pl.path
 
 -- imports and locals
-
 local _G = _G
-local sub = string.sub
-local getenv = os.getenv
-local tmpnam = os.tmpname
-local attributes, currentdir, link_attrib
-local package = package
-local append, concat, remove = table.insert, table.concat, table.remove
-local utils = require 'lp.utils'
+local utils = require 'pl.utils'
 local assert_string,raise = utils.assert_string,utils.raise
 
-local attrib
-local path = {}
-
-
-
---[===[-------------------------------------------------------------------------
-
 local res,lfs = _G.pcall(_G.require,'lfs')
-if res then
-    attributes = lfs.attributes
-    currentdir = lfs.currentdir
-    link_attrib = lfs.symlinkattributes
-else
-    error("lp.path requires LuaFileSystem")
+if not res then
+    error("pl.path requires LuaFileSystem")
 end
 
-attrib = attributes
-path.attrib = attrib
-path.link_attrib = link_attrib
-
---- Lua iterator over the entries of a given directory.
--- Behaves like `lfs.dir`
-path.dir = lfs.dir
-
---- Creates a directory.
-path.mkdir = lfs.mkdir
-
---- Removes a directory.
-path.rmdir = lfs.rmdir
-
----- Get the working directory.
-path.currentdir = currentdir
-
---- Changes the working directory.
-path.chdir = lfs.chdir
-
-
-
-
-path.isdir = require "pl.path.isdir"
-
-path.isfile = require "pl.path.isfile"
-
-path.islink = require "pl.path.islink"
-
-path.getsize = require "pl.path.getsize"
-
-path.exists = require "pl.path.exists"
-
---- Return the time of last access as the number of seconds since the epoch.
--- @string P A file path
-function path.getatime(P)
-    assert_string(1,P)
-    return attrib(P,'access')
-end
-
---- Return the time of last modification
--- @string P A file path
-function path.getmtime(P)
-    return attrib(P,'modification')
-end
-
----Return the system's ctime.
--- @string P A file path
-function path.getctime(P)
-    assert_string(1,P)
-    return path.attrib(P,'change')
-end
-
+local attrib = lfs.attributes
 
 local function at(s,i)
     return sub(s,i,i)
@@ -300,40 +230,35 @@ function path.normpath(P)
     return P
 end
 
-]===]--------------------------------------------------------------------------
+--- relative path from current directory or optional start point
+-- @string P a path
+-- @string[opt] start optional start point (default current directory)
+function path.relpath (P,start)
+    assert_string(1,P)
+    if start then assert_string(2,start) end
+    local split,normcase,min,append = utils.split, path.normcase, math.min, table.insert
+    P = normcase(path.abspath(P,start))
+    start = start or currentdir()
+    start = normcase(start)
+    local startl, Pl = split(start,sep), split(P,sep)
+    local n = min(#startl,#Pl)
+    if path.is_windows and n > 0 and at(Pl[1],2) == ':' and Pl[1] ~= startl[1] then
+        return P
+    end
+    local k = n+1 -- default value if this loop doesn't bail out!
+    for i = 1,n do
+        if startl[i] ~= Pl[i] then
+            k = i
+            break
+        end
+    end
+    local rell = {}
+    for i = 1, #startl-k+1 do rell[i] = '..' end
+    if k <= #Pl then
+        for i = k,#Pl do append(rell,Pl[i]) end
+    end
+    return table.concat(rell,sep)
+end
 
-do local lfs = require "lp.path.require.lfs" end
-
-path.attrib = require "lp.path.attrib"
-path.link_attrib = require "lp.path.link_attrib"
-path.dir = require "lp.path.dir"
-path.mkdir = require "lp.path.mkdir"
-path.rmdir = require "lp.path.rmdir"
-path.currentdir = require "lp.path.currentdir"
-path.chdir = require "lp.path.chdir"
-
-path.isdir = require "lp.path.isdir"
-path.isfile = require "lp.path.isfile"
-path.islink = require "lp.path.islink"
-path.getsize = require "lp.path.getsize"
-path.exists = require "lp.path.exists"
-path.getatime = require "lp.path.getatime"
-path.getmtime = require "lp.path.getmtime"
-path.getctime = require "lp.path.getctime"
-path.splitpath = require "lp.path.splitpath"
-path.abspath = require "lp.path.abspath"
-path.splitext = require "lp.path.splitext"
-path.dirname = require "lp.path.dirname"
-path.basename = require "lp.path.basename"
-path.extension = require "lp.path.extension"
-path.isabs = require "lp.path.isabs"
-path.join = require "lp.path.join"
-path.normcase = require "lp.path.normcase"
-path.normpath = require "lp.path.normpath"
-path.relpath = require "lp.path.relpath"
-path.expanduser = require "lp.path.expanduser"
-path.tmpname = require "lp.path.tmpname"
-path.common_prefix = require "lp.path.common_prefix"
-path.package_path = require "lp.path.package_path"
 
 return path

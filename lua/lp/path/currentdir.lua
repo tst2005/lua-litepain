@@ -3,5 +3,5 @@
 -- @submodule lp.path
 
 ---- Get the working directory.
--- @name currentdir
+-- @field currentdir
 return assert(require"lfs".currentdir)

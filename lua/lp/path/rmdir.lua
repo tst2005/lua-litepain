@@ -3,5 +3,5 @@
 -- @submodule lp.path
 
 --- Removes a directory.
--- @name rmdir
+-- @field rmdir
 return assert(require"lfs".rmdir)

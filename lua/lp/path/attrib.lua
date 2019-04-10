@@ -4,5 +4,5 @@
 
 ---
 -- @see lfs.attributes
--- @name attrib
+-- @field attrib
 return assert(require"lfs".attributes)

@@ -4,5 +4,5 @@
 
 ----
 -- @see lfs.symlinkattributes
--- @name link_attrib
+-- @field link_attrib
 return assert(require"lfs".symlinkattributes)

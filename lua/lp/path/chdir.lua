@@ -3,5 +3,5 @@
 -- @submodule lp.path
 
 --- Changes the working directory.
--- @name chdir
+-- @field chdir
 return assert(require "lfs".chdir)
