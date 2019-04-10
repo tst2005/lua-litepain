@@ -1,5 +1,6 @@
 --- micro-module of `lp.detect`
--- @module lp.detect.lua51
+-- @submodule lp.detect
+-- @set no_summary=true
 
 --- boolean flag this is Lua 5.1 (or LuaJIT).
 -- @field lua51

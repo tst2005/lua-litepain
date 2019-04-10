@@ -1,5 +1,6 @@
 --- micro-module of `lp.detect`
--- @module lp.detect.jit52
+-- @submodule lp.detect
+-- @set no_summary=true
 
 --- boolean flag this is LuaJIT with 5.2 compatibility compiled in.
 -- @field jit52

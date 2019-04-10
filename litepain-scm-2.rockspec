@@ -7,7 +7,7 @@ source = {
 
 description = {
   summary = "Lua utility libraries loosely based on the Python standard libraries",
-  homepage = "http://stevedonovan.github.com/lua-litepain",
+  homepage = "https://github.com/tst2005/lua-litepain",
   license = "MIT/X11",
   maintainer = "tst2005@gmail.com",
   detailed = [[
@@ -27,6 +27,9 @@ build = {
 --    ["lp"] = "lua/lp/init.lua",
     ["lp.compat"] = "lua/lp/compat.lua",
     ["lp.utils"] = "lua/lp/utils.lua",
+    ["lp.path"] = "lua/lp/path.lua",
+
+	["lp.detect"] = "lua/lp/detect.lua",
 
 --[==[
     ["lp.strict"] = "lua/lp/strict.lua",
@@ -51,7 +54,6 @@ build = {
     ["lp.Date"] = "lua/lp/Date.lua",
     ["lp.luabalanced"] = "lua/lp/luabalanced.lua",
     ["lp.comprehension"] = "lua/lp/comprehension.lua",
-    ["lp.path"] = "lua/lp/path.lua",
     ["lp.array2d"] = "lua/lp/array2d.lua",
     ["lp.func"] = "lua/lp/func.lua",
     ["lp.lapp"] = "lua/lp/lapp.lua",

@@ -1,5 +1,9 @@
 --- micro-module of `lp.detect`
--- @module lp.detect.dir_separator
+-- @submodule lp.detect
+-- @set no_summary=true
+
+--- Content
+-- @section content
 
 --- the directory separator character for the current platform.
 -- @field dir_separator

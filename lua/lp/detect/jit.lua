@@ -1,5 +1,6 @@
 --- micro-module of `lp.detect`
--- @module lp.detect.jit
+-- @submodule lp.detect
+-- @set no_summary=true
 
 --- boolean flag this is LuaJIT.
 -- @field jit

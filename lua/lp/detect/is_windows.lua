@@ -1,5 +1,6 @@
 --- micro-module of `lp.detect`
--- @module lp.detect.is_windows
+-- @submodule lp.detect
+-- @set no_summary=true
 
 local dir_separator = require "lp.detect.dir_separator"
 
